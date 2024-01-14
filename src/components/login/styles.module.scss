@@ -1,0 +1,43 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 100px 0px 0px 0px;
+    label {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+    }
+    span {
+        cursor: pointer;
+        font-size: 20px;
+    }
+    &_error {
+        color: red;
+    }
+    input {
+        
+        padding: 18px 300px 17px 26px;
+        border-radius: 10px;
+        color: rgba(0, 0, 0, 0.60);
+        font-family: Iowan Old Style;
+        font-size: 24px;  
+        background: #EEF2D1; 
+    }
+    h1 {
+        color: #000;
+        font-family: Iowan Old Style;
+        font-size: 36px;
+    }
+    button {
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.30);
+        background: #595D41;
+        color: #EEF2D1;
+        padding: 10px 10px;
+        font-family: Iowan Old Style;
+        font-size: 20px;
+    }
+}

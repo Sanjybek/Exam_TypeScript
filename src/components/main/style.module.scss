@@ -1,0 +1,136 @@
+@mixin fontSize22 {
+    font-size: 22px;
+}
+@mixin fontSize20 {
+    font-size: 20px;
+}
+@mixin fontSize14 {
+    font-size: 14px;
+}
+@mixin fontSize16 {
+    font-size: 16px;
+}
+$colorBlack: black;
+$colorGreen: green;
+$colorRed: #F41E1E;
+$colorBlue: #17156C;
+
+@mixin fontFamilyInter {
+    font-family: Inter;
+}
+
+.container {
+    max-width: 1680px;
+    margin: 0 auto;
+    padding: 0 5px;
+    margin:  20px 50px 50px 50px;
+}
+.main {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    width: 100%;
+    z-index: 1;
+    &_search {
+        max-width: 700px;
+        display: flex;
+        justify-content: start;
+        gap: 20px;
+    }
+    &_inp{
+        width: 70%;
+        height: 47px;
+        border-radius: 10px;
+        font-size: 17px;
+    }
+    &_btn {
+        padding: 10px 30px;
+        border: 1px solid $colorBlack;
+        border-radius: 10px;
+    }
+    &__card {
+        padding: 10px 20px;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
+    }
+}
+.login {
+    display: flex;
+} 
+
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    &__image {
+        width: 169px;
+        height: 169px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+    &__title {
+        @include fontSize14;
+        max-width: 160px;
+    }
+    &__price {
+        @include fontSize14;
+    }
+    &__btn_edit {
+        cursor: pointer;
+        color: $colorRed;
+        @include fontSize14;
+    }
+    &__btn_bascet {
+        cursor: pointer;
+        color: $colorBlue;
+    }
+
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    &__img {
+        width: 169px;
+        height: 169px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+}
+.sort {
+    display: flex;
+    gap: 20px;
+    &__hover {
+        @include fontSize16;
+    } 
+    &__hover:hover {
+        color: $colorGreen;
+        transition: 1s;
+    }
+}
+.action {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0px 50px 0px 0px;
+    &__save {
+        display: inline-flex;
+        padding: 10px 30px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 20px;
+        background: #EEF2D1;
+
+        z-index: 99999;
+        position: sticky;
+        // bottom: 0;
+    }
+}
+.header_login {
+    padding: 10px 30px;
+    border: 1px solid $colorBlack;
+    border-radius: 10px;
+}

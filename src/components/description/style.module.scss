@@ -1,0 +1,73 @@
+
+@mixin fontFamilyInter {
+    font-family: Inter;
+}
+@mixin fontSize32 {
+    font-size: 32px;
+}
+@mixin fontWeight600 {
+    font-weight: 600;
+}
+
+@mixin fontSize20 {
+    font-size: 20px;
+}
+@mixin fontWeight400 {
+    font-weight: 400;
+}
+
+section {
+    width: 100%;
+    height: 100%;
+}
+.container {
+    max-width: 1680px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.ul {
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.main  {
+    width: 100%;
+    text-align: end;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__title {
+        @include fontFamilyInter;
+        @include fontSize32;
+        @include fontWeight600;  
+    }
+    &__card  {
+        display: flex;
+        gap: 100px;
+    }
+    &__div {
+        max-width: 600px;
+        height: 600px;
+    }
+    &__image {
+        width: 100%;;
+        height: 100%;
+        border-radius: 40px;
+    }
+    &__desc {
+        max-width: 500px;
+        @include fontFamilyInter;
+        @include fontSize20;
+        @include fontWeight400;  
+    }
+}
+.desc {
+    @include fontSize20;
+    @include fontWeight600;  
+}
