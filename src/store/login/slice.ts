@@ -6,7 +6,7 @@ export const loginSlice = createSlice ({
     initialState: {error: '', isLoad: false},
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(registerAction.fulfilled, (state, action) => {
+        builder.addCase(registerAction.fulfilled, (state) => {
             state.isLoad = false
         })
         builder.addCase(registerAction.rejected, (state, action) => {
@@ -14,11 +14,11 @@ export const loginSlice = createSlice ({
             state.error = action.payload as string
             
         })
-        builder.addCase(registerAction.pending, (state, action) => {
+        builder.addCase(registerAction.pending, (state) => {
             state.isLoad = true
         })
         
-        builder.addCase(loginAction.fulfilled, (state, action) => {
+        builder.addCase(loginAction.fulfilled, (state) => {
             state.isLoad = false
         })
         builder.addCase(loginAction.rejected, (state, action) => {
@@ -26,7 +26,7 @@ export const loginSlice = createSlice ({
             state.error = action.payload as string
             
         })
-        builder.addCase(loginAction.pending, (state, action) => {
+        builder.addCase(loginAction.pending, (state) => {
             state.isLoad = true
         })
     }

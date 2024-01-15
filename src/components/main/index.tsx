@@ -2,29 +2,24 @@ import React, { useState } from 'react';
 import s from './style.module.scss'
 import { Link } from 'react-router-dom';
 import { TypArr } from '../../store/product/initialState';
-// import { DeleteOutlined } from '@ant-design/icons-vue';
-import { StarOutlined, StarFilled, StarTwoTone, DeleteOutlined } from '@ant-design/icons';
+import {DeleteOutlined } from '@ant-design/icons';
 type ProductsType = {
     products: TypArr[]
     handleDelete: (id: number) => void
     desc: (id: number) => void
     edit: (id: number) => void
     handleLogout: () => void
-    addToCart: (id: number) => void
+    addToCart: (product: TypArr) => void
     setProduct: (title: string) => void
-    filterProduct: (products: TypArr[]) => void
     handleSort: (operator: string) => void
 }
-
 const Main: React.FC<ProductsType> = ({
     products, 
     handleDelete, 
     desc, 
     edit, 
     addToCart,
-    handleLogout,
     setProduct,
-    filterProduct,
     handleSort,
 }) => {
     const [searchValue, setSearchValue] = useState('')
@@ -54,12 +49,12 @@ const Main: React.FC<ProductsType> = ({
                             const { id, title, description, price, image } = product;
                                 return (
                                     <li className={s.home} key={id}>
-                                        <img className={s.home__image} onClick={() => desc(id)} src={image} alt=""/>
+                                        {!image ? <div>'PHOTO'</div> : <img className={s.home__image} onClick={() => desc(id)} src={image}/>}
                                         <button type="button" className={s.home__delete} onClick={() => handleDelete(id)}> <DeleteOutlined /></button>
                                         <h1 className={s.home__title}>{title}</h1>
                                         <p className={s.home__price}> {price}</p>
                                         <button type="button" onClick={() => edit(id)} className={s.home__btn_edit}>Редактировать</button>
-                                        <button onClick={() => addToCart(id)} className={s.home__btn_bascet}> Добавить в корзину</button>
+                                        <button onClick={() => addToCart(product)} className={s.home__btn_bascet}> Добавить в корзину</button>
                                     </li>
                                 );
                         })}

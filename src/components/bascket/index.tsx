@@ -8,11 +8,9 @@ type BascketType = {
     data: BascketDataType[]
     
 }
-
-
 const Bascket: React.FC<BascketType> = ({deleteBascet,cartDelete, data }) => {
     return (
-        <section className={s.bascket}>
+      <section className={s.bascket}>
         <div className={s.container}>
           <div className={s.bascetCard}>
             <h1 className={s.bascetCard__title}>Корзина</h1>

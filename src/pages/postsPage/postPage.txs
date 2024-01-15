@@ -1,8 +1,0 @@
-import React from 'react';
-import PostContainer from '../../container/postContainer';
-
-const  PostPageContainer =  () => {
-    return <PostContainer/>
-};
-
-export default PostPageContainer;

@@ -1,8 +1,6 @@
-import { string } from 'yup';
 import Bascket from '../../components/bascket';
 import React, { useState } from 'react';
-import { useAppSelector } from '../../hook';
-import {Spin} from 'antd'
+import { TypArr } from '../../store/product/initialState';
 export type BascketDataType = {
     image: string
     price: string
@@ -12,13 +10,14 @@ export type BascketDataType = {
 }
 const BascketContainer = () => {
     
-    const storedCartData = localStorage.getItem('cart');
-    const initialCartData: BascketDataType[] = storedCartData ? JSON.parse(storedCartData) : [];
+    const storedCartData = localStorage.getItem('bascket');
+    const initialCartData: TypArr[] = storedCartData ? JSON.parse(storedCartData) : [];
+    
     const [data, setData] = useState(initialCartData);
-    const isLoad = useAppSelector((state) => state.productReducer.isLoad)
+    
     const cartDelete = (id: number) => {
         const deleteId = data.filter((card) => card.id !== id)
-        localStorage.setItem('cart', JSON.stringify(deleteId))
+        localStorage.setItem('bascket', JSON.stringify(deleteId))
         setData(deleteId)
     }
     const deleteBascet = () => {
@@ -26,7 +25,7 @@ const BascketContainer = () => {
     }
     return (
         <>
-         {isLoad ? <Spin tip="Loading" size="large"></Spin>: <Bascket cartDelete={cartDelete} deleteBascet={deleteBascet} data={data} />}
+         <Bascket cartDelete={cartDelete} deleteBascet={deleteBascet} data={data} />
         </>
     );
 };

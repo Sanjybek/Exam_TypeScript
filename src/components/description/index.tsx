@@ -1,8 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import s from './style.module.scss'
-import { TypArr } from '../../store/product/initialState';
-
 type DescDataType = {
     product: {
         image: string
@@ -12,9 +9,7 @@ type DescDataType = {
         description: string
     }
 }
-
 const Description: React.FC<DescDataType> = ({product}) => {
-    console.log(product, 'mini');
     return (
         <section>
                 <div className={s.container} >
@@ -36,5 +31,4 @@ const Description: React.FC<DescDataType> = ({product}) => {
         </section>
     );
 };
-
 export default Description;

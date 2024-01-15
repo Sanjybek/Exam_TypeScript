@@ -11,6 +11,7 @@ const PostContainer = () => {
     const products = useAppSelector((state) => state.productReducer.products)
     
     const product = products.find((product) => `${product.id}` === productID)
+    
     const initialValues = {
         price: '',
         description: '',
@@ -37,14 +38,14 @@ const PostContainer = () => {
         if(productID) {
             const obj = {
                 ...data,
-                image: image,
+                image,
                 id: productID,
             }
             dispatch(putId({navigate, ...obj})) 
         } else {
             const obj = {
                 ...data,
-                image: image,
+                image,
             }
             dispatch(postsProdoct({navigate,...obj}))
         }

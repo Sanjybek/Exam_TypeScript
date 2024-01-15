@@ -2,7 +2,7 @@ import s from './style.module.scss'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import { postSchema } from '../../utils/shemaProduct';
+import { postSchema } from '../../utils/scheme';
 import { postsProps } from './types';
 export type FormValues = {
     title: string;
@@ -25,7 +25,6 @@ const ProduckPost: React.FC<postsProps> = ({onSubmit, values, handleAddPhotoClic
         <div className={s.block}>
             <form  className={s.block__form}  onSubmit={handleSubmit(onSubmit)} >
                 <div className={s.block__check}>
-                    
                     <div className={s.block__flex}>
                         <Link to={'/'}  className={s.block__btn}>Отмена</Link>
                         <div onClick={() => handleAddPhotoClick()} className={s.block__photo}>

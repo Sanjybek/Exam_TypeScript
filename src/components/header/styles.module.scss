@@ -3,7 +3,7 @@ $color:  #EEF2D1;
 $colorGreen: green;
 
 @mixin fontSize20 {
-  font-size: 20px;
+  font-size: 22px;
 } 
 .headers {
     z-index: 99999;
@@ -13,7 +13,7 @@ $colorGreen: green;
 	  top: 0;
     background-color: white;
 }
-.header {
+.headers {
     width: 100%;
     
   }
@@ -27,14 +27,14 @@ $colorGreen: green;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 30px 0px;
+    padding: 25px 19px 0px;
     &_flex {
       width: 507px;
       height: 75px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 30px;
+      gap: 40px;
       background: $color;
       border-radius: 20px;
       @include fontSize20;

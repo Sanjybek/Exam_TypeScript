@@ -1,4 +1,3 @@
-import React from 'react';
 import {Link, useParams} from "react-router-dom";
 import s from './styles.module.scss'
 
@@ -8,8 +7,6 @@ const Header= () => {
         localStorage.removeItem('token');
         window.location.reload()
     }
-      
-
     return (
             <header className={s.headers}>
                 <div className={s.container}>
@@ -18,17 +15,17 @@ const Header= () => {
                             <Link className={s.header__hover} to={'/'}>
                                 Главная
                             </Link>
-                            <Link className={s.header__hover} to={'/'}>
+                            <Link className={s.header__hover} to={'/#'}>
                                     О нас
                             </Link>
-                            <Link className={s.header__hover} to={'/'}>
+                            <Link className={s.header__hover} to={'/#'}>
                                     Контакты
                             </Link> 
                             <Link className={s.header__hover} to={'/bascket'}>
                                     Корзина
                             </Link>  
                         </ul>
-                        <ul>
+                        <div>
                             {descId ? (
                                     <Link className={s.header__hover} to={'/'}>
                                         Вернуться
@@ -39,8 +36,8 @@ const Header= () => {
                                     ) : (
                                         <Link className={s.header_login} to={'/login'}>Войти</Link>
                                     )
-                                )}
-                        </ul>
+                            )}
+                        </div>
                     </div>
                 </div>
                 
