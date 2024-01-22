@@ -1,5 +1,5 @@
 import Bascket from '../../components/bascket';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TypArr } from '../../store/product/initialState';
 export type BascketDataType = {
     image: string
@@ -8,25 +8,26 @@ export type BascketDataType = {
     title: string
     description: string
 }
+
 const BascketContainer = () => {
     
-    const storedCartData = localStorage.getItem('bascket');
-    const initialCartData: TypArr[] = storedCartData ? JSON.parse(storedCartData) : [];
-    
+    const storedCartData = localStorage.getItem('card'); // Используйте 'card' вместо 'cart' для согласованности
+    const initialCartData: BascketDataType[] = storedCartData ? JSON.parse(storedCartData) : [];
     const [data, setData] = useState(initialCartData);
-    
+
     const cartDelete = (id: number) => {
-        const deleteId = data.filter((card) => card.id !== id)
-        localStorage.setItem('bascket', JSON.stringify(deleteId))
-        setData(deleteId)
+        const deleteId = data.filter((card) => card.id !== id);
+        localStorage.setItem('card', JSON.stringify(deleteId));
+        setData(deleteId);
     }
-    const deleteBascet = () => {
-        setData([])
+
+    const deleteBascket = () => {
+        const newCartData: any = [];
+        setData(newCartData);
+        localStorage.setItem('card', JSON.stringify(newCartData));
     }
     return (
-        <>
-         <Bascket cartDelete={cartDelete} deleteBascet={deleteBascet} data={data} />
-        </>
+        <Bascket cartDelete={cartDelete} deleteBascket={deleteBascket} data={data} />
     );
 };
 

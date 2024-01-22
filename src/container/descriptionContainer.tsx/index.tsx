@@ -19,7 +19,7 @@ const DescriptionContainer: React.FC = () => {
         }
      }, [descId])
     return (
-            <>{isLoad ? <Spin className={s.search} tip="Loading" size="large"></Spin>: <Description product={product}/>}</>
+            <>{isLoad ? <Spin className={s.search} size="large"></Spin>: <Description product={product}/>}</>
         )
 };
 

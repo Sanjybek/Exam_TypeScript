@@ -1,0 +1,150 @@
+@import '../../../variables/variables.scss';
+
+.main {
+    width: 100%;
+    &_search {
+        margin-top: 18px;
+        margin-bottom: 15px;
+        max-width: 716px;
+        display: flex;
+        justify-content: start;
+        gap: 10px;
+    }
+    &_inp{
+        width: 600px;
+        height: 47px;
+        border-radius: 10px;
+        @include fontSize18;
+        padding: 0px 0px 0px 20px ;
+    }
+    &_btn {
+        // padding: 10px 20px 10px 20px;
+        width: 100px;
+        height: 45px;
+        border: 1px solid $colorBlack;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+}
+
+.container {
+    max-width: 1680px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+.login {
+    display: flex;
+    margin: 15px 0px 0px 0px;
+} 
+
+.price__sort {
+    margin-right: 50px;
+
+}
+.sort {
+    display: flex;
+    gap: 25px;
+    &__price {
+        color: $colorBlack;
+        display: flex;
+        gap: 3px;
+        &:active {
+            color: $colorGreen;
+        }
+    }
+}
+@media (max-width: 1366px) {
+    .container {
+        max-width: 1340px;
+    }
+    .main__card {
+        grid-template-columns: repeat(4, 1fr) ;
+        gap: 10px;
+    }
+    
+}
+@media (max-width: 1366px) {
+    .container {
+        max-width: 1340px;
+        height: auto;
+    }
+    .main__card {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+        gap: 10px;
+    }
+}
+
+
+@media (max-width: 920px) {
+    .container {
+        max-width: 920px;
+        margin: 0 auto;
+        height: auto;
+    }
+    .main {
+        &_inp {
+            width: 400px;
+        }
+    }
+
+}
+@media (max-width: 820px) {
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .main__card {
+        grid-template-columns: repeat(4, 1fr) ;
+        gap: 22px;
+    }
+    
+}
+@media (max-width: 540px) {
+    .container {
+        max-width: 500px;
+    }
+    
+    .main {
+        &_search {
+           max-width: 450px;
+        }
+        &_inp {
+            height: 40px;
+            @include fontSize14;
+        }
+        &_btn {
+            @include fontSize14;
+            padding: 5px 8px 5px 8px;
+        }
+    }
+    .sort {
+        flex-direction: column;
+        row-gap: 5px;
+        
+    }
+    .sort__price  {
+        @include fontSize14;
+    }
+    
+    
+}
+@media (max-width: 414px) {
+    .container {
+        max-width: 400px;
+    }
+    
+    .main {
+        &_inp {
+            width: 240px;
+        }
+    }
+    .sort {
+        @include fontSize14;
+    }
+    .sort__price  {
+        @include fontSize14;
+    }
+}
+
+
+

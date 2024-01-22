@@ -1,22 +1,18 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Main from '../../components/main';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { DeleteProduct, getProduct } from '../../store/product/actions';
 import { TypArr } from '../../store/product/initialState';
-import { Spin } from 'antd';
 import s from './style.module.scss'
 const MainContainer = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const {isLoad, error, products} = useAppSelector((state) => state.productReducer) 
     useEffect(() => {
-        dispatch(getProduct())
+         dispatch(getProduct())
     }, [])
-    const handleDelete = (id: number) => {
-       dispatch(DeleteProduct(id))
-        .then(() => dispatch(getProduct()))
-    };
+
     const edit = (productId: number) => {
         navigate(`/post/${productId}`)
     }
@@ -24,22 +20,21 @@ const MainContainer = () => {
         navigate(`/description/${descId}`)
     }
 
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        window.location.reload()
-    }
     const [product, setProduct] = useState<string>('')
     const [sort, setSort] = useState<string>('')
 
-    const filter = useMemo(() => {
+    const filtered = useMemo(() => {
         let filter = [...products] 
         if (product) {
-            return products.filter((productElement) => productElement.title.toLowerCase().startsWith(product.toLowerCase())
-            );
+            return products.filter((productElement) => productElement.title.toLowerCase().startsWith(product.toLowerCase()));
         }
+
         filter.sort((a: TypArr, b: TypArr): number => {
             switch (sort) {
+                
                 case 'price' :
+                    return +a.price - +b.price
+                case 'price2' :
                     return +b.price - +a.price
                 case 'idnone' :
                     return a.id - b.id
@@ -52,90 +47,94 @@ const MainContainer = () => {
         return filter
     }, [products, sort, product, ])
 
+
     const handleSort = (operator: string) => {
         setSort(operator)
     }
+    // const addToCart = (product: TypArr) => {
+    //     const getLocalProduct: TypArr[]= JSON.parse(localStorage.getItem('bascket') || '[]')
+    //         const object = {
+    //             ...product,
+    //             id: Math.random()
+    //         }
+    //         const arr = [...getLocalProduct, object]
+    //         localStorage.setItem('bascket', JSON.stringify(arr))
+    // };
+    type  bascketType = {
+        id:number
+        title: string
+    }
+    const addToCart = (id: number) => {
+       
+        const existingCartString = localStorage.getItem('card');
+            if (existingCartString !== null) {
+                const existingCart = JSON.parse(existingCartString);
 
-   
-    const addToCart = (product: TypArr) => {
-        const getLocalProduct: TypArr[]= JSON.parse(localStorage.getItem('bascket') ?? '[]')
-            const object = {
-                ...product,
-                id: Math.random()
+                const isProductInCart = existingCart.find((product: bascketType) => product.id === id);
+                if (!isProductInCart) {
+                    const productToAdd = products.find((product) => product.id === id);
+                    existingCart.push(productToAdd);
+                    localStorage.setItem('card', JSON.stringify(existingCart));
+                } else {
+                    alert('Товар уже в корзине');
+                }
+            } else {
+                const newCart = [];
+                const productToAdd = products.find((product) => product.id === id);
+                newCart.push(productToAdd);
+                localStorage.setItem('card', JSON.stringify(newCart));
             }
-            const arr = [...getLocalProduct, object]
-            localStorage.setItem('bascket', JSON.stringify(arr))
-      };
-      
+            }
+  
+    // 
+    const [showConfirmation, setShowConfirmation] = useState(false);
+    const [deleteItemId, setDeleteItemId] = useState<number>(0);
+    
+    const handleDelete = (id: number) => {
+        setDeleteItemId(id);
+        setShowConfirmation(true);
+    };
+    const confirmDelete = () => {
+        setShowConfirmation(false);
+        
+        dispatch(DeleteProduct(deleteItemId))
+            .then(() => dispatch(getProduct()))
+            .catch(() => 'Произошла ошибка');
+    };
+    const cancelDelete = () => {
+        setShowConfirmation(false);
+    };
+
+    
+    const [searchValue, setSearchValue] = useState('')
+    const searchPruducts = () => {
+        setProduct(searchValue)
+    }
     return (
-            <>
-                {isLoad ?   <Spin  className={s.search} tip="Loading" size="large"></Spin> :
-                 <Main
-                        products={filter}
-                        handleDelete={handleDelete}
-                        edit={edit}
-                        desc={desc}
-                        addToCart={addToCart}
-                        handleLogout={handleLogout}
-                        setProduct={setProduct}
-                        handleSort={handleSort}
-                    />
-                    } 
-            </>
+        <>
+        <Main
+               products={filtered}
+               handleDelete={handleDelete}
+               edit={edit}
+               desc={desc}
+               addToCart={addToCart}
+               handleSort={handleSort}
+               setSearchValue={setSearchValue}
+               searchPruducts={searchPruducts}
+
+
+               showConfirmation={showConfirmation}
+                confirmDelete={confirmDelete}
+                cancelDelete={cancelDelete}
+              
+           />
+           <div className={s.search}>
+               {!filtered.length && !isLoad && (
+                   <p>Товар не найден</p>
+               )}
+           </div>
+        </>
     );
 };
 
 export default MainContainer;
-
-
-
-
-
-
- // const addToCart = (id: number) => {
-      
-    //      const existingCartString = localStorage.getItem(JSON.parse('card')) || [];
-
-    //     //  const existingCartString = localStorage.getItem('card');
-    //     // const isProductInCart = existingCartString.find((product: TypArr) => product.id === id);
-
-    //     if(existingCartString) {
-    //         const productToAdd = products.find((product) => product.id === id);
-    //         existingCartString.push(productToAdd);
-    //         console.log('добавлено в корзину');
-
-    //     }
-        
-    // }
-
-// if (existingCartString !== null) {
-        //     const existingCart = JSON.parse(existingCartString);
-        //     const isProductInCart = existingCart.find((product: TypArr) => product.id === id);
-        //     console.log(isProductInCart, 'mmmmmm');
-            
-        //     if (!isProductInCart) {
-        //         const productToAdd = products.find((product) => product.id === id);
-        //         existingCart.push(productToAdd);
-        //         console.log('добавлено в корзину');
-                
-        //         localStorage.setItem('bascket', JSON.stringify(existingCart));
-        //     } 
-        //     else {
-        //         alert('Товар уже в корзине');
-        //     }
-        // } else {
-        //     alert('Корзина не найдена');
-        // }
-
-  // const existingCartString = localStorage.getItem('bascket');
-        // if(existingCartString !== null) {
-        //     const  existingCart = JSON.parse(existingCartString)
-        //     const isProductInCart = existingCart.find((product: TypArr) => product.id === id);
-        //     if (!isProductInCart) {
-        //             const productToAdd = products.find((product) => product.id === id);
-        //             existingCart.push(productToAdd);
-        //             console.log('добавлено в корзину');
-                
-        //             localStorage.setItem('bascket', JSON.stringify(existingCart));
-        //     }
-        // }

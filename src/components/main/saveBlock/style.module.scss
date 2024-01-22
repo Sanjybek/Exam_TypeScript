@@ -1,0 +1,46 @@
+@import '../../../variables/variables.scss';
+@mixin fontSize22 {
+    font-size: 22px;
+}
+.main {
+    width: 100%;
+    
+}
+.container {
+    max-width: 1580px;
+    margin: 0 auto;
+    padding: 0 5px;
+}
+.action {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0px 50px 0px 0px;
+
+}
+.action__save {
+    display: inline-flex;
+    padding: 10px 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    background: #EEF2D1;
+}
+@media (max-width: 1366px) {
+    .container {
+        max-width: 1300px;
+    }
+}
+@media (width: 920px) {
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+    } 
+}
+@media (width: 820px) {
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    } 
+}
+ 

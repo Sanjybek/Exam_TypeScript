@@ -22,6 +22,7 @@ const Registration: React.FC<AuthProps> = ({onSubmit,setIsRegister}) => {
     return (
         <form  onSubmit={handleSubmit(onSubmit)} className={s.wrapper}>
             <h1>Регистрация</h1>
+            {/* DRY */}
             <label>
                 <input placeholder='user name' {...register('username')}/>
                 <span className={s.wrapper_error}>{errors?.username?.message}</span>

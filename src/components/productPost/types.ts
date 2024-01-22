@@ -1,5 +1,4 @@
 import { SubmitHandler } from "react-hook-form";
-import { FormValues } from ".";
 
 type  postsProduct  =  {
     title: string

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInstans} from "../../api";
+import { HOME_ROUTER } from "../../navigate/paths";
 
 type post = {
     navigate?: (path: string) => void
@@ -23,7 +24,7 @@ export const postsProdoct = createAsyncThunk<undefined, postsNav,{rejectValue: s
     async ({navigate, ...data}, thunkAPI) => {
         try {
             await axiosInstans.post('product/', data);
-            navigate('/')
+            navigate(HOME_ROUTER)
             
         } catch (e) {
             return thunkAPI.rejectWithValue('Произошла ошибка при создании товара!')
@@ -56,7 +57,7 @@ export const putId = createAsyncThunk<undefined, putId,{rejectValue: string} >(
     async ({navigate, ...data}, thunkAPI) => {
         try {
             await axiosInstans.put(`product/${data.id}/`, data); 
-            navigate('/')           
+            navigate(HOME_ROUTER)           
         } catch (e) {
             return thunkAPI.rejectWithValue('Произошла ошибка при редактировнии!')
         }

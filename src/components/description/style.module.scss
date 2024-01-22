@@ -1,43 +1,22 @@
-
-@mixin fontFamilyInter {
-    font-family: Inter;
-}
-@mixin fontSize32 {
-    font-size: 32px;
-}
-@mixin fontWeight600 {
-    font-weight: 600;
-}
-
-@mixin fontSize20 {
-    font-size: 20px;
-}
-@mixin fontWeight400 {
-    font-weight: 400;
-}
+@import '../../variables/variables.scss';
 
 section {
-    width: 100%;
+    max-width: 100%;
     height: 100%;
 }
 .container {
     max-width: 1680px;
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 0 5px;
 }
-
 .ul {
     padding: 20px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    max-width: 1300px;
 }
-.main  {
-    width: 100%;
-    text-align: end;
-}
-
 .info {
     display: flex;
     align-items: center;
@@ -45,29 +24,118 @@ section {
     &__title {
         @include fontFamilyInter;
         @include fontSize32;
-        @include fontWeight600;  
     }
-    &__card  {
-        display: flex;
-        gap: 100px;
-    }
-    &__div {
-        max-width: 600px;
+    .info__image {
+        margin-right: 100px;
+        width: 50%;
         height: 600px;
-    }
-    &__image {
-        width: 100%;;
-        height: 100%;
         border-radius: 40px;
-    }
+        float: left;
+       
+    }   
     &__desc {
-        max-width: 500px;
+        max-width: 1300px;
+        height: 600px;
+        float: left;
         @include fontFamilyInter;
         @include fontSize20;
-        @include fontWeight400;  
     }
 }
+
 .desc {
     @include fontSize20;
-    @include fontWeight600;  
 }
+@media (max-width: 1250px) {
+    .container {
+        max-width: 1200px;
+    }
+    .info {
+        .info__image {
+            margin-right: 80px;
+            height: 500px;
+        }   
+        &__desc {
+            @include fontSize18;
+        }
+    }
+}
+
+@media (max-width: 920px) {
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .info {
+        &__title {
+            font-size: 28px;
+        }
+        .info__image {
+            margin-right: 50px;
+            height: 450px;
+        }   
+        &__desc {
+            @include fontSize16;
+        }
+    }
+}
+@media (max-width: 820px) {
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .info {
+        &__title {
+            font-size: 28px;
+        }
+        .info__image {
+            margin-right: 40px;
+            width: 50%;
+            height: 400px;
+        }   
+        &__desc {
+            @include fontSize14;
+           
+        }
+    }
+}
+
+@media (max-width: 730px) {
+    .container {
+        max-width: 710px;
+    }
+    .info {
+        &__title {
+            font-size: 25px;
+        }
+        .info__image {
+            margin-right: 40px;
+            width: 50%;
+            height: 350px;
+        }   
+    }
+}
+@media (max-width: 540px) {
+    .container {
+        max-width: 520px;
+    }
+    .info {
+        &__title {
+            @include fontSize20;
+        }
+        .info__image {
+            margin-right: 40px;
+            width: 100%;
+            height: 350px;
+            margin-bottom: 20px;
+           
+        }   
+    }
+}
+@media (max-width: 414px) {
+    .container {
+        max-width: 390px;
+        padding: 0 5px;
+    }
+}
+
+

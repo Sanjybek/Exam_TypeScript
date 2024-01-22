@@ -14,6 +14,7 @@ export const productSlice = createSlice({
         builder.addCase(getProduct.rejected, (state, actions) => {
             state.error = actions.payload as string
             state.isLoad = false
+            state.products=[];
         })
         builder.addCase(getProduct.pending, (state) => {
             state.isLoad = true
