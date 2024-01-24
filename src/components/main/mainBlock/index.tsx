@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './style.module.scss'
 import {ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
+import { set } from 'react-hook-form';
 
 export type ProductsType = {
     handleSort: (operator: string) => void
@@ -10,7 +11,7 @@ export type ProductsType = {
 }
 
 const MainBlock: React.FC<ProductsType> = ({setSearchValue, handleSort, searchPruducts}) => {
-    const sort__price = ({isSort__price}: any) => isSort__price ? s.active : ''
+    
     return (
      <section className={s.main}>
           <div className={s.container}>
@@ -22,7 +23,6 @@ const MainBlock: React.FC<ProductsType> = ({setSearchValue, handleSort, searchPr
                     </div>
                     <div className={s.sort}>
                         <h1 className={s.price__sort}>Сортировать по:</h1>
-                        {/* DRY!!!! */}
                         <div className={s.sort__price}>Ценам 
                             <button className={s.antd__icon}>
                                 <ArrowUpOutlined onClick={() => handleSort('price')} /> 

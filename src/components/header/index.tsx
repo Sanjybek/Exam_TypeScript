@@ -44,13 +44,12 @@ const Header= () => {
                                     </NavLink>
                                 ) : (
                                     <div>
-                                        {token ?  <Button className={s.header_login} onClick={handleLogout}>Выйти</Button>: <div>
-                                        <Link  to={'/login'}><Button     className={s.header_login} > Войти</Button></Link></div>}
+                                        {token ?  <button className={s.header_login} onClick={handleLogout}>Выйти</button>: <div>
+                                        <Link  to={'/login'}><button    className={s.header_login} > Войти</button></Link></div>}
                                     </div>
                             )}
                         </div>
                     </div>
-
                     <div className={s.burger}>
                         <div className={s.logo}>
                             <img className={s.header__logo} src="https://yt3.googleusercontent.com/7rR9lmy7LlKH--10O_sS8ITz6Fm84FrvMHY7GHS4dD8jZSM-3RE0LA9dTV5jRL7ukPWL5B2j=s900-c-k-c0x00ffffff-no-rj" alt="" />

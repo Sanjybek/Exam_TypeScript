@@ -15,7 +15,7 @@ const Bascket: React.FC<BascketType> = ({deleteBascket,cartDelete, data }) => {
             <div className={s.btn__end}>
                 <button type='button' onClick={() => deleteBascket(data)} className={s.btn}>Очистить корзину</button>
             </div>
-            <ul >
+            <ul className={s.card__block}>
               {data.map(({title, price, image, id}) => {
                   return (
                     <li className={s.card} key={id}> 

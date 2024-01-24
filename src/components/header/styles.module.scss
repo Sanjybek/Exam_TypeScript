@@ -10,7 +10,7 @@
 }
 .container {
   max-width: 1640px;
-  padding: 0 5px;
+  padding: 0 10px;
   margin: 0 auto;
 }
 
@@ -18,7 +18,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 0px 0px 0px;
+  padding: 20px 0px 0px 0px;
   &_nav {
     width: 507px;
     height: 75px;
@@ -31,9 +31,7 @@
     @include fontSize20;
   }  
   &_login {
-    // padding: 13px 13px 13px 13px;
-    width: 100px;
-    height: 40px;
+    padding: 13px 25px 13px 25px;
     border: 1px solid $colorBlack;
     border-radius: 10px;
   }
@@ -219,6 +217,8 @@
   }
   .burger__nav {
     background-color: $color;
+    display: flex;
+    gap: 20px;
   }
   .block {
     display: flex;

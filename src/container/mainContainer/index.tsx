@@ -9,9 +9,8 @@ const MainContainer = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const {isLoad, error, products} = useAppSelector((state) => state.productReducer) 
-    useEffect(() => {
-         dispatch(getProduct())
-    }, [])
+    const [product, setProduct] = useState<string>('')
+    const [sort, setSort] = useState<string>('')
 
     const edit = (productId: number) => {
         navigate(`/post/${productId}`)
@@ -20,8 +19,7 @@ const MainContainer = () => {
         navigate(`/description/${descId}`)
     }
 
-    const [product, setProduct] = useState<string>('')
-    const [sort, setSort] = useState<string>('')
+    
 
     const filtered = useMemo(() => {
         let filter = [...products] 
@@ -31,7 +29,6 @@ const MainContainer = () => {
 
         filter.sort((a: TypArr, b: TypArr): number => {
             switch (sort) {
-                
                 case 'price' :
                     return +a.price - +b.price
                 case 'price2' :
@@ -46,20 +43,13 @@ const MainContainer = () => {
         })
         return filter
     }, [products, sort, product, ])
-
+    useEffect(() => {
+        dispatch(getProduct())
+   }, [])
 
     const handleSort = (operator: string) => {
         setSort(operator)
     }
-    // const addToCart = (product: TypArr) => {
-    //     const getLocalProduct: TypArr[]= JSON.parse(localStorage.getItem('bascket') || '[]')
-    //         const object = {
-    //             ...product,
-    //             id: Math.random()
-    //         }
-    //         const arr = [...getLocalProduct, object]
-    //         localStorage.setItem('bascket', JSON.stringify(arr))
-    // };
     type  bascketType = {
         id:number
         title: string

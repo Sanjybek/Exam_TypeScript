@@ -7,6 +7,7 @@ import ProductBlock from './productBlock';
 import SaveBlock from './saveBlock';
 import { useAppSelector } from '../../hook';
 import { Spin } from 'antd';
+import SkeletonBlock from './skeleton/skeleton';
 
 export type ProductsType = {
     handleSort: (operator: string) => void
@@ -43,26 +44,30 @@ const Main: React.FC<ProductsType> = ({
 }) => {
     const {isLoad, } = useAppSelector((state) => state.productReducer) 
 
+
     
     return (
-        
-           <>
+        <>
                 <MainBlock setSearchValue={setSearchValue} handleSort={handleSort} searchPruducts={searchPruducts} />
-                {/* {isLoad ? <Spin  className={s.search}  size="large"></Spin> :  */}
-                <ProductBlock
-                    products={products}
-                    handleDelete={handleDelete}
-                    desc={desc}
-                    edit={edit}
-                    addToCart={addToCart}
-                    showConfirmation={ showConfirmation}
-                    confirmDelete={    confirmDelete}
-                    cancelDelete={    cancelDelete}
-                   
-                />
-                {/* }  */}
+                
+               <div className={s.container}>
+                   <div className={s.main__card}>
+                        {isLoad ? <SkeletonBlock/> : products.map(product => 
+                            <ProductBlock 
+                                product={product}
+                                handleDelete={handleDelete}
+                                desc={desc}
+                                edit={edit}
+                                addToCart={addToCart}
+                                showConfirmation={ showConfirmation}
+                                confirmDelete={confirmDelete}
+                                cancelDelete={cancelDelete}
+                            /> 
+                        )} 
+                    </div>
+               </div>
                 <SaveBlock/>
-           </>
+            </>
         
     );
 };
