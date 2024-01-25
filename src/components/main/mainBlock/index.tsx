@@ -18,8 +18,8 @@ const MainBlock: React.FC<ProductsType> = ({setSearchValue, handleSort, searchPr
             <div className={s.login}>
                 <div  className={s.main}>
                     <div className={s.main_search}>
-                        <input  onChange={(text) => setSearchValue(text.target.value)} placeholder='Введите поисковик' className={s.main_inp}/>
-                        <Button  onClick={() =>searchPruducts()}  className={s.main_btn}>Поиск</Button> 
+                        <input  onChange={(text) => setSearchValue(text.target.value)} placeholder='Введите поисковик' className={s.main__search_value}/>
+                        <Button  onClick={() =>searchPruducts()}  className={s.main__search_button}>Поиск</Button> 
                     </div>
                     <div className={s.sort}>
                         <h1 className={s.price__sort}>Сортировать по:</h1>

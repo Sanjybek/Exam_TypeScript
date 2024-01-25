@@ -22,13 +22,11 @@ const Authorization: React.FC<AuthProps> = ({onSubmit, setIsRegister}) => {
             <div className={s.container}>
                 <form onSubmit={handleSubmit(onSubmit)}  className={s.wrapper}>
                     <h1>Войти</h1>
-                    {/* DRY */}
                     <label>
                         <input type="text" placeholder='username' {...register('username')}/>
                         <span className={s.wrapper_error}>{errors?.username?.message}</span>
 
                     </label>
-                    {/* DRY */}
                     <label>
                         <input type="password"  placeholder='password' {...register('password')}/>
                         <span className={s.wrapper_error}>{errors?.password?.message}</span>

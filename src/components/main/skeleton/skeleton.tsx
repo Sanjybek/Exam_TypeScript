@@ -15,7 +15,7 @@ const SkeletonBlock = () => {
 
   const renderSkeletons = () => {
     return skeletonData.map((item, index) => (
-      <Skeleton baseColor='#6DD5FA' key={index} {...item} />
+      <Skeleton baseColor='#CFDEF3' key={index} {...item} />
     ));
   };
 

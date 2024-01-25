@@ -17,15 +17,10 @@ export type ProductsType = {
     handleDelete: (id: number) => void
     desc: (id: number) => void
     edit: (id: number) => void
-    // addToCart: (product: TypArr) => void
-
     addToCart: (id: number) => void
-
-
     showConfirmation: boolean
     confirmDelete: () => void
     cancelDelete: () => void
-
 }
 
 const Main: React.FC<ProductsType> = ({
@@ -43,14 +38,10 @@ const Main: React.FC<ProductsType> = ({
     
 }) => {
     const {isLoad, } = useAppSelector((state) => state.productReducer) 
-
-
-    
     return (
         <>
-                <MainBlock setSearchValue={setSearchValue} handleSort={handleSort} searchPruducts={searchPruducts} />
-                
-               <div className={s.container}>
+            <MainBlock setSearchValue={setSearchValue} handleSort={handleSort} searchPruducts={searchPruducts} />
+                <div className={s.container}>
                    <div className={s.main__card}>
                         {isLoad ? <SkeletonBlock/> : products.map(product => 
                             <ProductBlock 
@@ -65,10 +56,9 @@ const Main: React.FC<ProductsType> = ({
                             /> 
                         )} 
                     </div>
-               </div>
-                <SaveBlock/>
-            </>
-        
+                </div>
+            <SaveBlock/>
+        </>
     );
 };
 

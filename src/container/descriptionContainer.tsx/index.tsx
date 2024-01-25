@@ -11,8 +11,6 @@ const DescriptionContainer: React.FC = () => {
     
     const product = useAppSelector((state) => state.productReducer.product)
     const isLoad = useAppSelector((state) => state.productReducer.isLoad)
-    
-    
      useEffect(() => {
         if (descId) {
             dispatch(descProduct(descId))

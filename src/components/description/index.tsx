@@ -18,7 +18,7 @@ const Description: React.FC<DescDataType> = ({product}) => {
                     <ul className={s.ul}>  
                         <h1 className={s.info__title} >{product.title}</h1>
                         <li className={s.info__card} key={product.id}>
-                            <div className={s.info__desc}> {!product.image ? <p></p> : <img className={s.info__image} src={product.image} alt="" />}Описание {product.description}</div>
+                            <div className={s.info__description}> {!product.image ? <p></p> : <img className={s.info__picture} src={product.image} alt="" />}Описание {product.description}</div>
                         </li>   
                     </ul>
                 </div>

@@ -34,12 +34,11 @@ const ProduckPost: React.FC<postsProps> = ({onSubmit, values, handleAddPhotoClic
                             </div>
                         </div>
                         <div  className={s.block__value}>
-                            {/* DRY!!! */}
-                            <input className={s.inp}  placeholder='Введите название товара' {...register('title')}/>
+                            <input className={s.product__value}  placeholder='Введите название товара' {...register('title')}/>
                             <span className={s.post__error}>{errors?.title?.message}</span>
-                            <input className={s.inp} placeholder='Введите описание товара' {...register('description')}/>
+                            <input className={s.product__value} placeholder='Введите описание товара' {...register('description')}/>
                             <span className={s.post__error}>{errors?.description?.message}</span>
-                            <input className={s.inp } type="number"  placeholder='Введите цену товара' {...register('price')}/>
+                            <input className={s.product__value } type="number"  placeholder='Введите цену товара' {...register('price')}/>
                             <span className={s.post__error}>{errors?.price?.message}</span>   
                             <div className={s.block__btn__end}>
                                 <button  type='submit' className={s.block__btn}>Сохранить</button>

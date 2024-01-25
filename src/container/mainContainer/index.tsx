@@ -18,15 +18,11 @@ const MainContainer = () => {
     const desc = (descId: number) => {
         navigate(`/description/${descId}`)
     }
-
-    
-
     const filtered = useMemo(() => {
         let filter = [...products] 
         if (product) {
             return products.filter((productElement) => productElement.title.toLowerCase().startsWith(product.toLowerCase()));
         }
-
         filter.sort((a: TypArr, b: TypArr): number => {
             switch (sort) {
                 case 'price' :
@@ -43,9 +39,10 @@ const MainContainer = () => {
         })
         return filter
     }, [products, sort, product, ])
+
     useEffect(() => {
         dispatch(getProduct())
-   }, [])
+    }, [])
 
     const handleSort = (operator: string) => {
         setSort(operator)
@@ -76,7 +73,6 @@ const MainContainer = () => {
             }
             }
   
-    // 
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [deleteItemId, setDeleteItemId] = useState<number>(0);
     
@@ -94,30 +90,26 @@ const MainContainer = () => {
     const cancelDelete = () => {
         setShowConfirmation(false);
     };
-
-    
     const [searchValue, setSearchValue] = useState('')
     const searchPruducts = () => {
         setProduct(searchValue)
     }
     return (
         <>
-        <Main
-               products={filtered}
-               handleDelete={handleDelete}
-               edit={edit}
-               desc={desc}
-               addToCart={addToCart}
-               handleSort={handleSort}
-               setSearchValue={setSearchValue}
-               searchPruducts={searchPruducts}
-
-
-               showConfirmation={showConfirmation}
+            <Main
+                products={filtered}
+                handleDelete={handleDelete}
+                edit={edit}
+                desc={desc}
+                addToCart={addToCart}
+                handleSort={handleSort}
+                setSearchValue={setSearchValue}
+                searchPruducts={searchPruducts}
+                showConfirmation={showConfirmation}
                 confirmDelete={confirmDelete}
                 cancelDelete={cancelDelete}
-              
-           />
+                
+            />
            <div className={s.search}>
                {!filtered.length && !isLoad && (
                    <p>Товар не найден</p>

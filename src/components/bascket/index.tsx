@@ -12,20 +12,20 @@ const Bascket: React.FC<BascketType> = ({deleteBascket,cartDelete, data }) => {
         <div className={s.container}>
           <div className={s.bascetCard}>
             <h1 className={s.bascetCard__title}>Корзина</h1>
-            <div className={s.btn__end}>
-                <button type='button' onClick={() => deleteBascket(data)} className={s.btn}>Очистить корзину</button>
+            <div className={s.clear}>
+                <button type='button' onClick={() => deleteBascket(data)} className={s.clear__button}>Очистить корзину</button>
             </div>
             <ul className={s.card__block}>
               {data.map(({title, price, image, id}) => {
                   return (
                     <li className={s.card} key={id}> 
-                      {!image ? <div className={s.card__img}>PHOTO</div> : <img className={s.card__img} src={image}/> }
+                      {!image ? <div className={s.card__picture}>PHOTO</div> : <img className={s.card__picture} src={image}/> }
                       <h1 className={s.bascet__title}>{title}</h1>
                       <p>{price}</p>
-                      <button className={s.btn} onClick={() => cartDelete(id)}>Удалить из корзины</button>
+                      <button className={s.clear__button} onClick={() => cartDelete(id)}>Удалить из корзины</button>
                     </li> 
                   )
-              })
+                })
               }
             </ul>
           </div>

@@ -4,19 +4,16 @@ import { BASCKET_ROUTER, HOME_ROUTER , INFO_ROUTER, LOGIN_ROUTER, TEL_ROUTER} fr
 import { useAppDispatch, useAppSelector } from "../../hook";
 import { getProduct } from "../../store/product/actions";
 import { logout } from "../../store/login/slice";
-import { Button, Flex } from 'antd';
 
 const Header= () => {
     const {descId} = useParams()
     const dispatch = useAppDispatch();
     const token = useAppSelector((state) => state.loginReducer.token)
-    console.log(token, 'ttttttttt');
     
     const handleLogout = () => {
         dispatch(logout());
         dispatch(getProduct());
     };
-
     const setActive = ({isActive}: any ) => isActive ? s.active : '';
     
     return (
@@ -58,7 +55,7 @@ const Header= () => {
                         <input type="checkbox" id={s.burger__id} hidden/>
                         <label htmlFor={s.burger__id} className={s.burger__btn} ></label>
                             <ul className={s.burger__nav}>
-                                <NavLink className={setActive} to={HOME_ROUTER}>
+                                <NavLink  className={setActive} to={HOME_ROUTER}>
                                     Главная
                                 </NavLink>
                                 <NavLink className={setActive} to={INFO_ROUTER}>
