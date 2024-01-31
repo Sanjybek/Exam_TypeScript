@@ -1,47 +1,41 @@
 @import '../../../variables/variables.scss';
-@mixin fontSize22 {
-    font-size: 22px;
-}
+
 .main {
-    width: 100%;
-    
+  width: 100%;
 }
 .container {
-    max-width: 1680px;
-    margin: 0 auto;
-    padding: 0 5px;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 0 5px;
 }
 .action {
-    display: flex;
-    flex-direction: row-reverse;
-    // padding: 0px 50px 0px 0px;
-    margin-bottom: 10px;
-
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 10px;
 }
 .action__save {
-    display: inline-flex;
-    padding: 10px 30px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 20px;
-    background: #EEF2D1;
+  display: inline-flex;
+  padding: 10px 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 20px;
+  background: #eef2d1;
 }
-@media (max-width: 1366px) {
-    .container {
-        max-width: 1300px;
-    }
+@media (max-width: $largeDesktop) {
+  .container {
+    max-width: 1300px;
+  }
 }
 @media (width: 920px) {
-    .container {
-        max-width: 900px;
-        margin: 0 auto;
-    } 
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
 }
-@media (width: 820px) {
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
-    } 
+@media (width: $miniMobile) {
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
 }
- 

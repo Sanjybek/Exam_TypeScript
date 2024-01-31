@@ -1,90 +1,88 @@
-import { Link, NavLink, useParams} from "react-router-dom";
-import s from './styles.module.scss'
-import { BASCKET_ROUTER, HOME_ROUTER , INFO_ROUTER, LOGIN_ROUTER, TEL_ROUTER} from "../../navigate/paths";
-import { useAppDispatch, useAppSelector } from "../../hook";
-import { getProduct } from "../../store/product/actions";
-import { logout } from "../../store/login/slice";
+import { NavLink, useParams } from 'react-router-dom';
+import style from './styles.module.scss';
+import { BASCKET_ROUTER, HOME_ROUTER, INFO_ROUTER, TEL_ROUTER } from '../../navigate/paths';
+import { useAppDispatch, useAppSelector } from '../../hook';
+import NavLinkItem from './navLinkItem';
+import { login } from '../../store/login/slice';
+const Header = () => {
+  const dispatch = useAppDispatch();
+  const { descId } = useParams();
+  const token = useAppSelector((state) => state.loginReducer.token);
+  const handleLogout = () => {
+    dispatch(login());
+  };
 
-const Header= () => {
-    const {descId} = useParams()
-    const dispatch = useAppDispatch();
-    const token = useAppSelector((state) => state.loginReducer.token)
-    
-    const handleLogout = () => {
-        dispatch(logout());
-        dispatch(getProduct());
-    };
-    const setActive = ({isActive}: any ) => isActive ? s.active : '';
-    
-    return (
-            <header className={s.headers}>
-                <div className={s.container}>
-                    <div className={s.header}>
-                        <ul className={s.header_nav}>
-                            <NavLink className={setActive} to={HOME_ROUTER}>
-                                Главная
-                            </NavLink>
-                            <NavLink className={setActive} to={INFO_ROUTER}>
-                                    О нас
-                            </NavLink>
-                            <NavLink className={setActive} to={TEL_ROUTER}>
-                                    Контакты
-                            </NavLink> 
-                            <NavLink className={setActive} to={BASCKET_ROUTER}>
-                                    Корзина
-                            </NavLink>  
-                        </ul>
-                        <div >
-                            {descId ? (
-                                    <NavLink className={s.header__hover} to={HOME_ROUTER}>
-                                        Вернуться
-                                    </NavLink>
-                                ) : (
-                                    <div>
-                                        {token ?  <button className={s.header_login} onClick={handleLogout}>Выйти</button>: <div>
-                                        <Link  to={'/login'}><button    className={s.header_login} > Войти</button></Link></div>}
-                                    </div>
-                            )}
-                        </div>
+  return (
+    <header className={style.headers}>
+      <div className={style.container}>
+        <div className={style.header}>
+          <ul className={style.header_nav}>
+            <NavLinkItem to={HOME_ROUTER} text="Главная" />
+            <NavLinkItem to={INFO_ROUTER} text="О нас" />
+            <NavLinkItem to={TEL_ROUTER} text="Контакты" />
+            <NavLinkItem to={BASCKET_ROUTER} text="Корзина" />
+          </ul>
+          <div>
+            {descId ? (
+              <NavLink className={style.header__hover} to={HOME_ROUTER}>
+                Вернуться
+              </NavLink>
+            ) : (
+              <div>
+                {token ? (
+                  <NavLink to={'/login'} className={style.header_login} onClick={handleLogout}>
+                    Выйти
+                  </NavLink>
+                ) : (
+                  <NavLink to={'/login'} className={style.header_login}>
+                    Войти
+                  </NavLink>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+        <div className={style.burger}>
+          <div className={style.logo}>
+            <img
+              className={style.header__logo}
+              src="https://yt3.googleusercontent.com/7rR9lmy7LlKH--10O_sS8ITz6Fm84FrvMHY7GHS4dD8jZSM-3RE0LA9dTV5jRL7ukPWL5B2j=s900-c-k-c0x00ffffff-no-rj"
+              alt=""
+            />
+          </div>
+          <div className={style.block}>
+            <input type="checkbox" id={style.burger__id} hidden />
+            <label htmlFor={style.burger__id} className={style.burger__btn}></label>
+            <ul className={style.burger__nav}>
+              <NavLinkItem to={HOME_ROUTER} text="Главная" />
+              <NavLinkItem to={INFO_ROUTER} text="О нас" />
+              <NavLinkItem to={TEL_ROUTER} text="Контакты" />
+              <NavLinkItem to={BASCKET_ROUTER} text="Корзина" />
+              {descId ? (
+                <NavLink className={style.header__hover} to={HOME_ROUTER}>
+                  Вернуться
+                </NavLink>
+              ) : (
+                <div>
+                  {token ? (
+                    <NavLink to={'/login'} className={style.header_login} onClick={handleLogout}>
+                      Выйти
+                    </NavLink>
+                  ) : (
+                    <div>
+                      <NavLink className={style.header_login} to={'/login'}>
+                        Войти
+                      </NavLink>
                     </div>
-                    <div className={s.burger}>
-                        <div className={s.logo}>
-                            <img className={s.header__logo} src="https://yt3.googleusercontent.com/7rR9lmy7LlKH--10O_sS8ITz6Fm84FrvMHY7GHS4dD8jZSM-3RE0LA9dTV5jRL7ukPWL5B2j=s900-c-k-c0x00ffffff-no-rj" alt="" />
-                        </div>
-                        <div className={s.block}>
-                        <input type="checkbox" id={s.burger__id} hidden/>
-                        <label htmlFor={s.burger__id} className={s.burger__btn} ></label>
-                            <ul className={s.burger__nav}>
-                                <NavLink  className={setActive} to={HOME_ROUTER}>
-                                    Главная
-                                </NavLink>
-                                <NavLink className={setActive} to={INFO_ROUTER}>
-                                        О нас
-                                </NavLink>
-                                <NavLink className={setActive} to={TEL_ROUTER}>
-                                        Контакты
-                                </NavLink> 
-                                <NavLink className={setActive} to={BASCKET_ROUTER}>
-                                        Корзина
-                                </NavLink>  
-                                {descId ? (
-                                    <NavLink className={s.header__hover} to={HOME_ROUTER}>
-                                        Вернуться
-                                    </NavLink>
-                                ) : (
-                                    <div>
-                                        {token ?  <button className={s.header_login} onClick={handleLogout}>Выйти</button>: <div>
-                                        <Link  className={s.header_login} to={'/login'}>Войти</Link></div>}
-                                    </div>
-                                )}
-                            </ul>
-                        </div>      
-                    </div>
+                  )}
                 </div>
-            </header>
-    );
+              )}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 };
 
 export default Header;
-
-

@@ -1,112 +1,136 @@
 .authorization {
-    max-width: 100%;
+  max-width: 100%;
 }
 .container {
-    max-width: 1650px;
-    margin: 0 auto;
-    padding: 0 5px;
+  max-width: 1650px;
+  margin: 0 auto;
+  padding: 0 5px;
+}
+.block {
+  height: 120px;
+  display: flex;
+  align-items: center;
+}
+.nav {
+  display: inline-flex;
+  padding: 8px 25px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background: #fff;
+  font-family: 'Iowan Old Style';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding-top: 100px;
+  span {
+    cursor: pointer;
+    font-size: 20px;
+  }
+  &_error {
+    color: var(--colorRed);
+  }
+  label {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    padding-top: 100px;
-    span {
-        cursor: pointer;
-        font-size: 20px;
-    }
-    &_error {
-        color: red;
-    }
-    input {
-        
-        padding: 18px  17px 26px;
-        width: 600px;
-        height: 68px;
-        border-radius: 10px;
-        color: rgba(0, 0, 0, 0.60);
-        font-family: Iowan Old Style;
-        font-size: 24px;  
-        background: #EEF2D1; 
-    }
-    h1 {
-        color: #000;
-        font-family: Iowan Old Style;
-        font-size: 36px;
-    }
-    button {
-        border-radius: 10px;
-        border: 1px solid rgba(0, 0, 0, 0.30);
-        background: #595D41;
-        color: #EEF2D1;
-        padding: 10px 10px;
-        font-family: Iowan Old Style;
-        font-size: 20px;
-    }
+    text-align: center;
+  }
+  input {
+    padding: 18px 17px 26px;
+    width: 600px;
+    height: 68px;
+    border-radius: 10px;
+    color: rgba(0, 0, 0, 0.6);
+    font-family: Iowan Old Style;
+    font-size: 24px;
+    background: #eef2d1;
+  }
+  h1 {
+    color: var(--colorBalck);
+    font-family: Iowan Old Style;
+    font-size: 36px;
+  }
+  button {
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background: #595d41;
+    color: #eef2d1;
+    padding: 10px 10px;
+    font-family: Iowan Old Style;
+    font-size: 20px;
+  }
 }
 @media (max-width: 630px) {
-    .container {
-        max-width: 620px;
-        margin: 0 auto;
-    } 
-    .wrapper {
-        h1 {
-            font-size: 30px;
-        }
-        input {
-            padding: 10px  15px 10px;
-            width: 480px;
-            height: 60px;
-        }
-        button {
-            border-radius: 10px;
-            padding: 8px 8px;
-        }
+  .container {
+    max-width: 620px;
+    margin: 0 auto;
+  }
+  .wrapper {
+    h1 {
+      font-size: 30px;
     }
+    input {
+      padding: 10px 15px 10px;
+      width: 480px;
+      height: 60px;
+    }
+    button {
+      border-radius: 10px;
+      padding: 8px 8px;
+    }
+  }
 }
 @media (max-width: 520px) {
-    .container {
-        max-width: 500px;
-        margin: 0 auto;
-    } 
-    .wrapper {
-        input {
-            padding: 10px  15px 10px;
-            width: 400px;
-            height: 50px;
-            font-size: 20px;
-        }
-        button {
-            border-radius: 10px;
-            padding: 8px 8px;
-            font-size: 18px;
-        }
-        h1 {
-            font-size: 28px;
-        }
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .wrapper {
+    input {
+      padding: 10px 15px 10px;
+      width: 400px;
+      height: 50px;
+      font-size: 20px;
     }
+    button {
+      border-radius: 10px;
+      padding: 8px 8px;
+      font-size: 18px;
+    }
+    h1 {
+      font-size: 28px;
+    }
+  }
 }
 @media (max-width: 420px) {
-    .container {
-        max-width: 400px;
-        margin: 0 auto;
-    } 
-    .wrapper {
-        input {
-            padding: 10px  15px 10px;
-            width: 300px;
-            height: 40px;
-            font-size: 20px;
-        }
-        button {
-            border-radius: 10px;
-            padding: 5px 7px;
-            font-size: 15px;
-        }
-        h1 {
-            font-size: 26px;
-        }
+  .container {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .wrapper {
+    input {
+      padding: 10px 15px 10px;
+      width: 300px;
+      height: 40px;
+      font-size: 20px;
     }
+    button {
+      border-radius: 10px;
+      padding: 5px 7px;
+      font-size: 15px;
+    }
+    h1 {
+      font-size: 26px;
+    }
+  }
 }

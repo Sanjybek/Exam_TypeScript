@@ -1,34 +1,61 @@
+$desktop: 1640px;
+$largeDesktop: 1366px;
+$extraLargeDesktop: 1340px;
+$tablet: 1250px;
+$smallTablet: 1200px;
+$largeMobile: 1075px;
+$mediumMobile: 1065px;
+$smallMobile: 950px;
+$extraSmallMobile: 930px;
+$miniMobile: 820px;
+$smallerMobile: 768px;
+$extraSmallMobile1: 740px;
+$extraSmallMobile2: 730px;
+$extraSmallMobile3: 710px;
+$ultraSmallMobile1: 620px;
+$ultraSmallMobile2: 610px;
 
-@mixin fontSize22 {
-    font-size: 22px;
+@mixin container {
+  max-width: 500px;
 }
 
 @mixin fontFamilyInter {
-    font-family: Inter;
+  font-family: Inter;
 }
 @mixin fontSize20 {
-    font-size: 20px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-family: Inter;
 }
 @mixin fontSize14 {
-    font-size: 14px;
+  font-size: 14px;
 }
 @mixin fontSize16 {
-    font-size: 16px;
+  font-size: 16px;
 }
 @mixin fontSize18 {
-    font-size: 18px;
+  font-size: 18px;
+  font-weight: 100;
 }
 @mixin fontSize32 {
-    font-size: 18px;
+  font-size: 18px;
 }
-$colorBlack: black;
-$colorGreen: green;
-$colorRed: #F41E1E;
-$colorBlue: #17156C;
-$color:  #EEF2D1;
-$colorWhite: white;
 
+:root {
+  --black: #000;
+  --colorYellow: #eef2d1;
+  --colorBlack: black;
+  --colorGreen: green;
+  --colorRed: #f41e1e;
+  --colorBlue: #17156c;
+  --colorWhite: white;
+}
 
-
-
-
+@mixin fontSize22 {
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}

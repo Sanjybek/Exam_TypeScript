@@ -1,143 +1,144 @@
 @import '../../variables/variables.scss';
 
 .basket {
-    width: 100%;
+  width: 100%;
 }
-.container  {
-    max-width: 1680px;
-    margin: 0 auto;
-    padding: 0 10px;
+.container {
+  // TODO mixin
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 0 10px;
 }
 .bascetCard {
-    display: flex;
-    flex-direction: column;
-    padding: 50px 30px;
-    gap: 20px;
-    text-align: center;
-    &__title {
-        color: $colorBlack;
-        font-size: 32px;
-        font-weight: 600;
-    }
+  display: flex;
+  flex-direction: column;
+  padding: 50px 30px;
+  gap: 20px;
+  text-align: center;
+  &__title {
+    color: var(--black);
+    font-size: 32px;
+    font-weight: 600;
+  }
 }
 .clear {
-    text-align: end;
+  text-align: end;
 }
 .bascet__title {
-    @include fontFamilyInter;
+  @include fontFamilyInter;
 }
 
 .clear__button {
-    color: $colorRed;
-    @include fontFamilyInter;
-    &:active {
-        width: 169px;
-        background-color: $colorRed;
-        box-shadow: 0 5px #666;
-        color: $colorWhite;
-        transform: translateY(4px);
-    
-    }
-    &:hover {
-        background-color: $colorRed; 
-        color: $colorWhite;  
-        width: 160px;
-        border-radius: 5px;
-    }
+  color: var(--colorRed);
+  @include fontFamilyInter;
+  cursor: pointer;
+  &:active {
+    // TODO mixin
+    width: 169px;
+    background-color: var(--colorRed);
+    box-shadow: 0 5px #666;
+    color: var(--colorWhite);
+    transform: translateY(4px);
+  }
+  &:hover {
+    background-color: var(--colorRed);
+    color: var(--colorWhite);
+    width: 160px;
+    border-radius: 2px;
+  }
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: center;
-    
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
 }
 .card__block {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
 }
 .card__picture {
-    width: 100%;
-    height: 169px;
-    object-fit: cover;
-    border-radius: 20px;
+  width: 100%;
+  height: 169px;
+  object-fit: cover;
+  border-radius: 20px;
 }
+
+// TODO scss includes
+// Desktop = 1366
+// Tablet = ??
+// Mobile = ??
 @media (max-width: 1366px) {
-    .container {
-        max-width: 1340px;
-    }
-    .card__block {
-        grid-template-columns: repeat(7, 1fr);
-    }
+  .container {
+    max-width: 1340px;
+  }
+  .card__block {
+    grid-template-columns: repeat(7, 1fr);
+  }
 }
 @media (max-width: 1250px) {
-    .container {
-        max-width: 1200px;
-    }
-    .card__block {
-        grid-template-columns: repeat(5, 1fr) ;
-    }
-    .card__picture {
-        height: 200px;
-    }
-    
+  .container {
+    max-width: 1200px;
+  }
+  .card__block {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .card__picture {
+    height: 200px;
+  }
 }
 @media (max-width: 1075px) {
-    .container {
-        max-width: 1065px;
-        padding: 0 5px;
-    }
-    .card__block {
-        grid-template-columns: repeat(4, 1fr) ;
-    }
-    .card__picture {
-        height: 200px;
-    }
+  .container {
+    max-width: 1065px;
+    padding: 0 5px;
+  }
+  .card__block {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .card__picture {
+    height: 200px;
+  }
 }
 
 @media (max-width: 920px) {
-    .container {
-        max-width: 920px;
-        margin: 0 auto;
-        height: auto;
-    }
-    .card__block{
-        grid-template-columns: repeat(4, 1fr);
-    }
-    .card__picture {
-        height: 169px;
-    }
-
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    height: auto;
+  }
+  .card__block {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .card__picture {
+    height: 169px;
+  }
 }
 @media (max-width: 820px) {
-    .container {
-        max-width: 800px;
-    }
-    .bascet__title {
-        @include fontSize14;
-    }
-    .clear__button {
-        @include fontSize14;
-    }
-    
-    
+  .container {
+    max-width: 800px;
+  }
+  .bascet__title {
+    @include fontSize14;
+  }
+  .clear__button {
+    @include fontSize14;
+  }
 }
 @media (max-width: 700px) {
-    .container {
-        max-width: 680px;
-    }
-    .card__block {
-        grid-template-columns: repeat(3, 1fr) ;
-    }
+  .container {
+    max-width: 680px;
+  }
+  .card__block {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 @media (max-width: 540px) {
-    .container {
-        max-width: 500px;
-    }
-    .card__block {
-        grid-template-columns: repeat(2, 1fr) ;
-    }
-    
+  .container {
+    max-width: 500px;
+  }
+  .card__block {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

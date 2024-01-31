@@ -1,29 +1,49 @@
 import Bascket from '../../components/bascket';
 import React, { useEffect, useState } from 'react';
-export type BascketDataType = {
-    image: string
-    price: string
-    id: number
-    title: string
-    description: string
-}
+import { useAppDispatch, useAppSelector } from '../../hook';
+import { deleteAllBascket, deleteIdBascket, getBascketAction } from '../../store/cardBascket/actions';
+import SkeletonBlock from '../../components/main/skeleton/skeleton';
+import { Spin } from 'antd';
+import style from './style.module.scss';
 const BascketContainer = () => {
-    const storedCartData = localStorage.getItem('card'); // Используйте 'card' вместо 'cart' для согласованности
-    const initialCartData: BascketDataType[] = storedCartData ? JSON.parse(storedCartData) : [];
-    const [data, setData] = useState(initialCartData);
-    const cartDelete = (id: number) => {
-        const deleteId = data.filter((card) => card.id !== id);
-        localStorage.setItem('card', JSON.stringify(deleteId));
-        setData(deleteId);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getBascketAction());
+  }, []);
+  const cart = useAppSelector((state) => state.cardReducer.data);
+  const isLoad = useAppSelector((state) => state.cardReducer.isLoad);
+
+  const handleDeleteBascket = () => {
+    const isConfirmed = window.confirm(`Вы действительно хотите удалить все товары  из корзины?`);
+    if (isConfirmed) {
+      dispatch(deleteAllBascket())
+        .then(() => dispatch(getBascketAction()))
+        .catch(() => 'Произошла ошибка');
     }
-    const deleteBascket = () => {
-        const newCartData: any = [];
-        setData(newCartData);
-        localStorage.setItem('card', JSON.stringify(newCartData));
+  };
+  const cartDelete = (id: number) => {
+    dispatch(deleteIdBascket(id)).then(() => dispatch(getBascketAction()));
+  };
+  const confirmDelete = (id: number, title: string) => {
+    const isConfirmed = window.confirm(`Вы уверены, что хотите удалить "${title}" из корзины?`);
+    if (isConfirmed) {
+      cartDelete(id);
     }
-    return (
-        <Bascket cartDelete={cartDelete} deleteBascket={deleteBascket} data={data} />
-    );
+  };
+  return (
+    <>
+      {isLoad ? (
+        <Spin className={style.search}></Spin>
+      ) : (
+        <Bascket
+          cart={cart}
+          handleDeleteBascket={handleDeleteBascket}
+          cartDelete={cartDelete}
+          confirmDelete={confirmDelete}
+        />
+      )}
+    </>
+  );
 };
 
 export default BascketContainer;
