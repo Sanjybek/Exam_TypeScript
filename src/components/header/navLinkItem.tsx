@@ -1,13 +1,12 @@
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import s from './styles.module.scss';
-interface NavLinkItemProps {
+type NavLinkItemProps = {
   to: string;
   text: string;
-}
+};
 const NavLinkItem: React.FC<NavLinkItemProps> = ({ to, text }) => {
-  const { descId } = useParams();
-  const isActive = descId ? false : window.location.pathname === to;
-
+  const { pathname } = useLocation();
+  const isActive = pathname === to;
   return (
     <NavLink to={to} className={`${s.header_nav_link} ${isActive ? s.active : ''}`}>
       {text}

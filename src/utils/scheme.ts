@@ -1,25 +1,27 @@
-import * as yup from 'yup'
-
-// TODO stringRequired DRY
-const stringScheme = yup.string().required('Поле обязательно')
+import { FormValues } from './../components/productPost/index';
+import * as yup from 'yup';
+const requiredStringWithName = (name = 'Поле') => yup.string().required(`${name} обязателен для заполнения`).trim();
 
 const scheme = {
-    username: stringScheme.min(3, 'Не менее 3-х').max(12, 'Не более 12-ти'),
-    password: stringScheme.min(6, 'Не менее 6-х'),
-}
+  username: requiredStringWithName().min(3, 'Не менее 3-х').max(12, 'Не более 12-ти'),
+  password: requiredStringWithName().min(6, 'Не менее 6-х'),
+};
 
-export const AuthScheme = yup.object(scheme)
+export const AuthScheme = yup.object(scheme);
 
 export const RegisterScheme = yup.object({
-    ...scheme,
-    confirmpassword: stringScheme.min(6, 'Не более 6-ти')
-    .test('passwords-match', 'Пароли должны совподать', function (value) {
-        return this.parent.password === value
+  ...scheme,
+  confirmpassword: requiredStringWithName('Подтверждение пароля')
+    .min(6, 'Не менее 6 символов')
+    .test('passwords-match', 'Пароли должны совпадать', function (value) {
+      return this.parent.password === value;
     })
-})
+    .required('Подтвердите пароль'),
+});
+
 const schema = {
-    title: stringScheme,
-    description: stringScheme,
-    price: stringScheme.min(1, '').max(3, 'цена должна содержать не более 3 символов'),
+  title: requiredStringWithName().max(25, 'называния товара не более 25 символов'),
+  description: requiredStringWithName(),
+  price: requiredStringWithName().min(1, '').max(3, 'цена должна содержать не больше 3 символа'),
 };
-export const postSchema = yup.object(schema)
+export const postSchema = yup.object(schema);

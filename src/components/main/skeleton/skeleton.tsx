@@ -25,7 +25,7 @@ const SkeletonBlock = () => {
   };
 
   const renderSkeletonBlocks = () => {
-    const blocksCount = 18;
+    const blocksCount = 16;
 
     return Array.from({ length: blocksCount }).map((_, index) => (
       <div key={index} className={style.home}>

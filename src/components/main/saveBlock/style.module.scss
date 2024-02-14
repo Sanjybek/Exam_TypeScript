@@ -4,7 +4,7 @@
   width: 100%;
 }
 .container {
-  max-width: 1680px;
+  max-width: $desktop;
   margin: 0 auto;
   padding: 0 5px;
 }
@@ -14,6 +14,7 @@
   margin-bottom: 10px;
 }
 .action__save {
+  margin-top: 15px;
   display: inline-flex;
   padding: 10px 30px;
   justify-content: center;
@@ -22,20 +23,14 @@
   border-radius: 20px;
   background: #eef2d1;
 }
-@media (max-width: $largeDesktop) {
+@media (max-width: $desktop1200) {
   .container {
-    max-width: 1300px;
+    max-width: $desktop1075;
   }
 }
-@media (width: 920px) {
+@media (width: $tablet950) {
   .container {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-}
-@media (width: $miniMobile) {
-  .container {
-    max-width: 800px;
+    max-width: $tablet930;
     margin: 0 auto;
   }
 }

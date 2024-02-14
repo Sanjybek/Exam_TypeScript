@@ -19,7 +19,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 0px 0px 0px;
-  &_nav {
+  &__nav {
     width: 507px;
     height: 75px;
     display: flex;
@@ -28,93 +28,97 @@
     gap: 30px;
     background: var(--colorYellow);
     border-radius: 20px;
-    @include fontSize22;
+    @include font($fontSize22, $fontWeight600);
   }
-  &_login {
+  &__login {
     padding: 13px 25px 13px 25px;
     border: 1px solid var(--colorBlack);
     border-radius: 10px;
   }
+  .active {
+    color: var(--colorGreen);
+  }
 }
-
-.active {
-  color: var(--colorGreen);
-}
-
-.burger {
+.burger__block {
   display: none;
 }
-.setActive {
-}
-.burger__btn {
-  position: relative;
-  display: inline-block;
-  z-index: 9999;
-  width: 40px;
-  height: 3px;
-  background-color: var(--colorBlack);
-  transition: 0.6s;
-}
-.burger__btn::before {
-  content: '';
-  position: absolute;
-  width: 40px;
-  height: 3px;
-  background-color: var(--colorBlack);
-  top: -10px;
-  left: 0;
-  transition: 0.6s;
-}
-.burger__btn::after {
-  content: '';
-  position: absolute;
-  width: 40px;
-  height: 3px;
-  background-color: var(--colorBlack);
-  bottom: -10px;
-  left: 0;
-  transition: 0.6s;
-}
-#burger__id:checked + .burger__btn {
-  background-color: var(--colorYellow);
-}
-#burger__id:checked + .burger__btn::before {
-  transform: rotate(45deg);
-  top: 0;
-}
-#burger__id:checked + .burger__btn::after {
-  transform: rotate(-45deg);
-  bottom: 0;
-}
-.burger__nav {
-  position: absolute;
-  left: 0;
-  top: -400px;
-  width: 100%;
-  padding: 20px;
-  transition: 0.6s;
-  display: flex;
-  flex-direction: column;
-}
-.bureger__link {
-  display: block;
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-#burger__id:checked ~ .burger__nav {
-  top: 70px;
-}
-
-@media (max-width: $largeDesktop) {
-  .container {
-    max-width: $extraLargeDesktop;
+.burger {
+  &__btn {
+    position: relative;
+    display: inline-block;
+    z-index: 9999;
+    width: 40px;
+    height: 3px;
+    background-color: var(--colorBlack);
+    transition: 0.6s;
+  }
+  &__btn::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 3px;
+    background-color: var(--colorBlack);
+    top: -10px;
+    left: 0;
+    transition: 0.6s;
+  }
+  &__btn::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 3px;
+    background-color: var(--colorBlack);
+    bottom: -10px;
+    left: 0;
+    transition: 0.6s;
+  }
+  #burger__id:checked + .burger__btn {
+    background-color: var(--colorYellow);
+  }
+  #burger__id:checked + .burger__btn::before {
+    transform: rotate(45deg);
+    top: 0;
+  }
+  #burger__id:checked + .burger__btn::after {
+    transform: rotate(-45deg);
+    bottom: 0;
+  }
+  &__nav {
+    position: absolute;
+    left: 0;
+    top: -400px;
+    width: 100%;
+    padding: 20px;
+    transition: 0.6s;
+    display: flex;
+    flex-direction: column;
+  }
+  &__link {
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  #burger__id:checked ~ &__nav {
+    top: 70px;
   }
 }
 
-@media (max-width: 920px) {
+@media (max-width: $desktop1366) {
   .container {
-    max-width: 900px;
+    max-width: $desktop1340;
+  }
+}
+
+@media (max-width: $desktop1250) {
+  .container {
+    max-width: $desktop1200;
+  }
+}
+
+@media (max-width: $desktop1075) {
+  .container {
+    max-width: $desktop1050;
   }
   .header_login {
     padding: 13px 35px;
@@ -128,25 +132,10 @@
     }
   }
 }
-@media (max-width: $miniMobile) {
+
+@media (max-width: $tablet950) {
   .container {
-    max-width: 800px;
-  }
-  .header_login {
-    padding: 13px 35px;
-    border: 1px solid var(--colorBlack);
-    border-radius: 10px;
-    margin: 0px;
-  }
-  .header {
-    &_login {
-      padding: 10px 25px;
-    }
-  }
-}
-@media (max-width: $ultraSmallMobile1) {
-  .container {
-    max-width: 600px;
+    max-width: $tablet930;
   }
   .headers {
     height: 110px;
@@ -159,15 +148,15 @@
       gap: 26px;
     }
     &_login {
-      @include fontSize18;
+      @include font($fontSize18, $fontWeight400);
 
       border: none;
     }
   }
 }
-@media (max-width: 540px) {
+@media (max-width: $tablet820) {
   .container {
-    max-width: 500px;
+    max-width: $tablet800;
   }
   .headers {
     z-index: 99;
@@ -182,15 +171,22 @@
     &_nav {
       border-radius: 0px;
       gap: 23px;
-      @include fontSize18;
+      @include font($fontSize18, $fontWeight600);
       background: none;
     }
     &_login {
-      @include fontSize18;
+      @include font($fontSize18, $fontWeight400);
       border: none;
     }
   }
   .burger {
+    &__nav {
+      background-color: var(--colorYellow);
+      display: flex;
+      gap: 20px;
+    }
+  }
+  .burger__block {
     display: block;
     display: flex;
     align-items: center;
@@ -206,11 +202,6 @@
     width: 40px;
     height: 40px;
     border-radius: 10px;
-  }
-  .burger__nav {
-    background-color: var(--colorYellow);
-    display: flex;
-    gap: 20px;
   }
   .block {
     display: flex;

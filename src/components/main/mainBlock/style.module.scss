@@ -1,7 +1,15 @@
 @import '../../../variables/variables.scss';
-
-.main {
+.section {
   width: 100%;
+}
+.container {
+  max-width: $desktop;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+.main {
+  margin: 15px 0px 0px 0px;
+
   &_search {
     margin-top: 18px;
     margin-bottom: 15px;
@@ -14,8 +22,8 @@
     width: 600px;
     height: 47px;
     border-radius: 10px;
+    @include font($fontSize18, $fontWeight400);
     border: 1px solid black;
-    @include fontSize18;
     padding: 0px 0px 0px 20px;
     position: relative;
   }
@@ -26,16 +34,10 @@
     border-radius: 10px;
     cursor: pointer;
   }
-}
-
-.container {
-  max-width: $desktop;
-  margin: 0 auto;
-  padding: 0 30px;
-}
-.login {
-  display: flex;
-  margin: 15px 0px 0px 0px;
+  &__clear_icon {
+    position: absolute;
+    margin-right: 20px;
+  }
 }
 
 .price__sort {
@@ -45,7 +47,6 @@
   display: flex;
   gap: 25px;
   &__price {
-    // position: relative;
     color: var(--colorBlack);
     display: flex;
     gap: 3px;
@@ -53,57 +54,33 @@
     &:active {
       color: var(--colorGreen);
     }
-    // ::before {
-    //   content: '';
-    //   position: absolute;
-    //   left: 0;
-    //   right: 0;
-    //   bottom: -10px;
-    //   margin: 0 auto;
-    //   width: 100px;
-    //   height: 2px;
-    //   background-color: var(--colorGreen);
-    // }
   }
 }
-.antd__icon {
+.activeSort {
+  color: var(--colorGreen);
+  cursor: pointer;
   display: flex;
-  gap: 10px;
+  column-gap: 3px;
 }
 
-.sort__price {
-  cursor: pointer;
-  &.activeSort {
-    color: var(--colorGreen);
-  }
-}
-.x {
-  position: relative;
-  top: 0;
-  left: 0;
-}
-.main__clear_icon {
-  position: absolute;
-  margin-right: 20px;
-}
 .search {
   display: flex;
   align-items: center;
   justify-content: end;
 }
 
-@media (max-width: $largeDesktop) {
+@media (max-width: $desktop1366) {
   .container {
-    max-width: $extraLargeDesktop;
+    max-width: $desktop1340;
   }
   .main__card {
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
   }
 }
-@media (max-width: 1366px) {
+@media (max-width: $desktop1250) {
   .container {
-    max-width: 1340px;
+    max-width: $desktop1200;
   }
   .main__card {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -111,9 +88,9 @@
   }
 }
 
-@media (max-width: 920px) {
+@media (max-width: $tablet950) {
   .container {
-    max-width: 920px;
+    max-width: $tablet930;
   }
   .main {
     &__search_value {
@@ -121,9 +98,9 @@
     }
   }
 }
-@media (max-width: 820px) {
+@media (max-width: $tablet820) {
   .container {
-    max-width: 800px;
+    max-width: $tablet800;
   }
   .main__card {
     grid-template-columns: repeat(4, 1fr);
@@ -133,9 +110,9 @@
     margin-right: 10px;
   }
 }
-@media (max-width: 540px) {
+@media (max-width: $mobile520) {
   .container {
-    max-width: 500px;
+    max-width: $mobile500;
   }
 
   .main {
@@ -144,11 +121,11 @@
     }
     &__search_value {
       height: 40px;
-      @include fontSize14;
+      @include font($fontSize14, $fontWeight400);
       width: 64vw;
     }
     &__search_button {
-      @include fontSize14;
+      @include font($fontSize14, $fontWeight400);
       height: 40px;
       width: 100px;
     }
@@ -161,7 +138,7 @@
     row-gap: 10px;
   }
   .sort__price {
-    @include fontSize14;
+    @include font($fontSize14, $fontWeight400);
   }
 }
 @media (max-width: 414px) {
@@ -175,9 +152,6 @@
     }
   }
   .sort {
-    @include fontSize14;
-  }
-  .sort__price {
-    @include fontSize14;
+    @include font($fontSize14, $fontWeight400);
   }
 }

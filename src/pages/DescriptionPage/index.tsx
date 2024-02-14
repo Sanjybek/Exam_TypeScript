@@ -1,8 +1,8 @@
-import React from 'react';
 import DescriptionContainer from '../../container/descriptionContainer.tsx';
+import Authorization from '../authorization/index.js';
 
 const DescriptionPage = () => {
-    return <DescriptionContainer/>
+  return <DescriptionContainer />;
 };
 
 export default DescriptionPage;

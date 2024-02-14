@@ -1,8 +1,9 @@
-import React from 'react';
 import BascketContainer from '../../container/bascketContainer';
+import Authorization from '../authorization';
 
 const BascketPage = () => {
-    return <BascketContainer/>
+  const token = localStorage.getItem('token');
+  return <>{!token ? <Authorization /> : <BascketContainer />} </>;
 };
 
 export default BascketPage;

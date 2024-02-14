@@ -1,11 +1,7 @@
+import { ProductType } from '../../common/productTypes';
+
 export type cardType = {
-  product: {
-    id: number;
-    title: string;
-    description: string;
-    price: string;
-    image: string;
-  };
+  product: ProductType;
   quantity: number;
 };
 

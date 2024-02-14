@@ -1,3 +1,4 @@
+@import '../../variables/variables.scss';
 .authorization {
   max-width: 100%;
 }
@@ -25,6 +26,9 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+.error {
+  color: var(--colorRed);
 }
 .wrapper {
   display: flex;
@@ -70,10 +74,9 @@
     font-size: 20px;
   }
 }
-@media (max-width: 630px) {
+@media (max-width: $desktop1250) {
   .container {
-    max-width: 620px;
-    margin: 0 auto;
+    max-width: $desktop1200;
   }
   .wrapper {
     h1 {
@@ -90,9 +93,9 @@
     }
   }
 }
-@media (max-width: 520px) {
+@media (max-width: $tablet950) {
   .container {
-    max-width: 500px;
+    max-width: $tablet930;
     margin: 0 auto;
   }
   .wrapper {
@@ -107,14 +110,11 @@
       padding: 8px 8px;
       font-size: 18px;
     }
-    h1 {
-      font-size: 28px;
-    }
   }
 }
-@media (max-width: 420px) {
+@media (max-width: $tablet620) {
   .container {
-    max-width: 400px;
+    max-width: $tablet600;
     margin: 0 auto;
   }
   .wrapper {
@@ -130,7 +130,7 @@
       font-size: 15px;
     }
     h1 {
-      font-size: 26px;
+      @include font($fontSize22, $fontWeight600);
     }
   }
 }

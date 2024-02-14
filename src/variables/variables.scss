@@ -1,46 +1,24 @@
-$desktop: 1640px;
-$largeDesktop: 1366px;
-$extraLargeDesktop: 1340px;
-$tablet: 1250px;
-$smallTablet: 1200px;
-$largeMobile: 1075px;
-$mediumMobile: 1065px;
-$smallMobile: 950px;
-$extraSmallMobile: 930px;
-$miniMobile: 820px;
-$smallerMobile: 768px;
-$extraSmallMobile1: 740px;
-$extraSmallMobile2: 730px;
-$extraSmallMobile3: 710px;
-$ultraSmallMobile1: 620px;
-$ultraSmallMobile2: 610px;
+$fontWeight400: 400;
+$fontWeight500: 500;
+$fontWeight600: 600;
 
-@mixin container {
-  max-width: 500px;
-}
+$fontSize20: 20;
+$fontSize22: 22;
+$fontSize14: 14;
+$fontSize32: 32;
 
-@mixin fontFamilyInter {
-  font-family: Inter;
-}
-@mixin fontSize20 {
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  font-family: Inter;
-}
-@mixin fontSize14 {
-  font-size: 14px;
-}
-@mixin fontSize16 {
-  font-size: 16px;
-}
-@mixin fontSize18 {
-  font-size: 18px;
-  font-weight: 100;
-}
-@mixin fontSize32 {
-  font-size: 18px;
+$fontSize18: 18;
+$fontSize17: 17;
+$fontSize16: 16;
+$fontSize15: 15;
+
+$fontStyle: normal;
+
+@mixin font($size, $weight, $style: normal, $family: Inter) {
+  font-size: #{$size + px};
+  font-weight: $weight;
+  font-style: $style;
+  font-family: $family;
 }
 
 :root {
@@ -53,9 +31,33 @@ $ultraSmallMobile2: 610px;
   --colorWhite: white;
 }
 
-@mixin fontSize22 {
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
+$desktop: 1640px;
+
+$desktop1366: 1366px;
+$desktop1340: 1340px;
+$desktop1250: 1250px;
+$desktop1200: 1200px;
+
+$desktop1075: 1075px;
+$desktop1050: 1050px;
+
+$tablet950: 950px;
+$tablet930: 930px;
+
+$tablet820: 820px;
+$tablet800: 800px;
+
+$tablet768: 768px;
+$tablet740: 740px;
+
+$tablet730: 730px;
+$tablet710: 710px;
+
+$tablet620: 620px;
+$tablet600: 600px;
+
+$mobile520: 520px;
+$mobile500: 500px;
+
+$mobile414: 414px;
+$mobile390: 390px;

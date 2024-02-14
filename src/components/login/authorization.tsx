@@ -1,17 +1,29 @@
-import s from './styles.module.scss';
+import style from './styles.module.scss';
 import { useForm } from 'react-hook-form';
-
 import { yupResolver } from '@hookform/resolvers/yup';
-import { AuthScheme } from '../../utils/scheme';
 import { AuthProps } from './types';
-import { Link } from 'react-router-dom';
-import { HOME_ROUTER } from '../../navigate/paths';
+import { AuthScheme } from '../../utils/scheme';
 
+import { useAppDispatch, useAppSelector } from '../../hook';
+import { useEffect } from 'react';
+import { someClearErrorAction } from '../../store/login/slice';
 type FormValues = {
   username: string;
   password: string;
 };
+export type DataType = {
+  placeholder: string;
+  name: keyof FormValues;
+  type: string;
+};
+export const data: DataType[] = [
+  { placeholder: 'username', name: 'username', type: 'text' },
+  { placeholder: 'password', name: 'password', type: 'password' },
+];
 const Authorization: React.FC<AuthProps> = ({ onSubmit, setIsRegister }) => {
+  const dispatch = useAppDispatch();
+  const { error } = useAppSelector((state) => state.loginReducer);
+
   const {
     register,
     handleSubmit,
@@ -19,24 +31,27 @@ const Authorization: React.FC<AuthProps> = ({ onSubmit, setIsRegister }) => {
   } = useForm<FormValues>({
     resolver: yupResolver(AuthScheme),
   });
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(someClearErrorAction());
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [dispatch, error]);
   return (
-    <section className={s.authorization}>
-      <div className={s.container}>
-        <div className={s.block}>
-          <Link to={HOME_ROUTER} className={s.nav}>
-            Вернуться на главную
-          </Link>
-        </div>
-        <form onSubmit={handleSubmit(onSubmit)} className={s.wrapper}>
+    <section className={style.authorization}>
+      <div className={style.container}>
+        <form onSubmit={handleSubmit(onSubmit)} className={style.wrapper}>
           <h1>Войти</h1>
-          <label>
-            <input type="text" placeholder="username" {...register('username')} />
-            <span className={s.wrapper_error}>{errors?.username?.message}</span>
-          </label>
-          <label>
-            <input type="password" placeholder="password" {...register('password')} />
-            <span className={s.wrapper_error}>{errors?.password?.message}</span>
-          </label>
+          {data.map(({ name, placeholder, type }) => {
+            return (
+              <label key={name}>
+                <input type={type} placeholder={placeholder} {...register(name)} />
+                <span className={style.wrapper_error}>{errors?.[name]?.message}</span>
+              </label>
+            );
+          })}
+          <div className={style.wrapper_error}>{error}</div>
           <button>Войти</button>
           <p>Нет аккаунта? Зарегистрируйтесь</p>
           <button type="button" onClick={() => setIsRegister(true)}>

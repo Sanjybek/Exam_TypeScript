@@ -12,7 +12,7 @@ export type get = {
   quantity: number;
 };
 
-export const bascetAction = createAsyncThunk<undefined, card, { rejectValue: string }>(
+export const basketAction = createAsyncThunk<undefined, card, { rejectValue: string }>(
   'add-card/bascetAction',
   async ({ ...data }, thunkAPI) => {
     try {
@@ -22,7 +22,7 @@ export const bascetAction = createAsyncThunk<undefined, card, { rejectValue: str
     }
   },
 );
-export const getBascketAction = createAsyncThunk<cardType[], undefined, { rejectValue: string }>(
+export const getBasketAction = createAsyncThunk<cardType[], undefined, { rejectValue: string }>(
   'get-card/bascetAction',
   async (_, thunkAPI) => {
     try {
@@ -34,7 +34,7 @@ export const getBascketAction = createAsyncThunk<cardType[], undefined, { reject
   },
 );
 
-export const deleteAllBascket = createAsyncThunk<undefined, undefined, { rejectValue: string }>(
+export const deleteAllBasket = createAsyncThunk<undefined, undefined, { rejectValue: string }>(
   'delete-all-card/bascetAction',
   async (_, thunkAPI) => {
     try {
@@ -45,7 +45,7 @@ export const deleteAllBascket = createAsyncThunk<undefined, undefined, { rejectV
   },
 );
 
-export const deleteIdBascket = createAsyncThunk<undefined, number, { rejectValue: string }>(
+export const deleteIdBasket = createAsyncThunk<undefined, number, { rejectValue: string }>(
   'delete-card/bascetAction',
   async (product_id, thunkAPI) => {
     try {

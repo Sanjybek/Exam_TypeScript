@@ -1,11 +1,11 @@
 import ProduckPost from '../../components/productPost';
-import React, { useEffect, useState } from 'react';
-import { descProduct, postsProdoct, putId } from '../../store/product/actions';
-import { unstable_HistoryRouter, useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { descProduct, getProduct, createProduct, editProduct } from '../../store/product/actions';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hook';
-import { HOME_ROUTER } from '../../navigate/paths';
 import { Spin } from 'antd';
 import s from './style.module.scss';
+import { setIsGetProduct } from '../../store/get/slice';
 const initialValues = {
   price: '',
   description: '',
@@ -19,11 +19,17 @@ const PostContainer = () => {
   const [values, setValue] = useState(initialValues);
   const productEdit = useAppSelector((state) => state.productReducer.product);
   const isLoad = useAppSelector((state) => state.productReducer.isLoad);
+  const { isGetProduct } = useAppSelector((state) => state.isGetProductReducer);
+  console.log(isGetProduct);
   useEffect(() => {
     if (productID) {
       dispatch(descProduct(productID));
     }
-  }, [productID]);
+    if (isGetProduct) {
+      dispatch(getProduct());
+      dispatch(setIsGetProduct(false));
+    }
+  }, [dispatch, productID, isGetProduct]);
   useEffect(() => {
     if (productID && productEdit) {
       setValue({ ...productEdit, price: `${+productEdit.price - 0}` });
@@ -44,19 +50,25 @@ const PostContainer = () => {
         image,
         id: productID,
       };
-      dispatch(putId({ navigate, ...obj }));
+      dispatch(editProduct({ navigate, ...obj }));
     } else {
       const obj = {
         ...data,
         image,
       };
-      dispatch(postsProdoct({ navigate, ...obj }));
+      dispatch(createProduct({ navigate, ...obj }));
     }
   };
+
   const handleAddPhotoClick = () => {
     const imgValue = prompt('Введите URL фотографии');
     if (imgValue) {
-      setImage(imgValue);
+      const imgRegex = /\.(jpeg|jpg|gif|png)$/;
+      if (imgRegex.test(imgValue)) {
+        setImage(imgValue);
+      } else {
+        alert('Вы ввели некорректный URL фотографии');
+      }
     }
   };
   return (

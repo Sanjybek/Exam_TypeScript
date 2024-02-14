@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { registerAction, loginAction } from './actions';
+import { token } from '../../common/productTypes';
 type initType = {
   error: string;
   isLoad: boolean;
   token: string | null | undefined;
 };
-const token = localStorage.getItem('token');
 const initialState: initType = { error: '', isLoad: false, token: '' || token };
 
 export const loginSlice = createSlice({
@@ -15,6 +15,9 @@ export const loginSlice = createSlice({
     login(state) {
       localStorage.removeItem('token');
       state.token = '';
+    },
+    someClearErrorAction(state) {
+      state.error = '';
     },
   },
   extraReducers: (builder) => {
@@ -33,6 +36,7 @@ export const loginSlice = createSlice({
     builder.addCase(loginAction.fulfilled, (state, action) => {
       state.isLoad = false;
       state.token = action.payload;
+      state.error = '';
     });
     builder.addCase(loginAction.rejected, (state, action) => {
       state.isLoad = false;
@@ -44,3 +48,4 @@ export const loginSlice = createSlice({
   },
 });
 export const { login } = loginSlice.actions;
+export const { someClearErrorAction } = loginSlice.actions;

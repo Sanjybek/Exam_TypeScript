@@ -1,33 +1,40 @@
-import Bascket from '../../components/bascket';
-import React, { useEffect, useState } from 'react';
+import Bascket from '../../components/basket';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hook';
-import { deleteAllBascket, deleteIdBascket, getBascketAction } from '../../store/cardBascket/actions';
-import SkeletonBlock from '../../components/main/skeleton/skeleton';
+import { deleteAllBasket, deleteIdBasket, getBasketAction } from '../../store/cardBascket/actions';
 import { Spin } from 'antd';
 import style from './style.module.scss';
+import { CartItem, ProductType } from '../../common/productTypes';
+import { clearCart } from '../../store/cardBascket/slice';
 const BascketContainer = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(getBascketAction());
+    dispatch(getBasketAction());
   }, []);
   const cart = useAppSelector((state) => state.cardReducer.data);
   const isLoad = useAppSelector((state) => state.cardReducer.isLoad);
+  const [car, setCart] = useState<CartItem[]>([]);
 
-  const handleDeleteBascket = () => {
+  const handleDeleteBasket = () => {
     const isConfirmed = window.confirm(`Вы действительно хотите удалить все товары  из корзины?`);
     if (isConfirmed) {
-      dispatch(deleteAllBascket())
-        .then(() => dispatch(getBascketAction()))
+      dispatch(deleteAllBasket())
+        .then(() => {
+          dispatch(clearCart());
+        })
         .catch(() => 'Произошла ошибка');
     }
   };
+
   const cartDelete = (id: number) => {
-    dispatch(deleteIdBascket(id)).then(() => dispatch(getBascketAction()));
+    setCart((prevCart) => prevCart.filter((item) => item.product.id !== id));
+    dispatch(deleteIdBasket(id)).catch(() => 'Произошла ошибка');
   };
-  const confirmDelete = (id: number, title: string) => {
-    const isConfirmed = window.confirm(`Вы уверены, что хотите удалить "${title}" из корзины?`);
+
+  const confirmDelete = (item: ProductType) => {
+    const isConfirmed = window.confirm(`Вы уверены, что хотите удалить "${item.title}" из корзины?`);
     if (isConfirmed) {
-      cartDelete(id);
+      cartDelete(item.id);
     }
   };
   return (
@@ -37,7 +44,7 @@ const BascketContainer = () => {
       ) : (
         <Bascket
           cart={cart}
-          handleDeleteBascket={handleDeleteBascket}
+          handleDeleteBasket={handleDeleteBasket}
           cartDelete={cartDelete}
           confirmDelete={confirmDelete}
         />

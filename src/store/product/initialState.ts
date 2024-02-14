@@ -1,3 +1,5 @@
+import { Product } from '../../common/productTypes';
+
 export type TypArr = {
   title: string;
   description: string;
@@ -8,13 +10,7 @@ export type TypArr = {
 
 type InitialState = {
   products: TypArr[];
-  product: {
-    image: string;
-    price: string;
-    id?: number;
-    title: string;
-    description: string;
-  };
+  product: Product;
   isLoad: boolean;
   error: string;
 };

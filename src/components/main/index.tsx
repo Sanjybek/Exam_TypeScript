@@ -19,6 +19,7 @@ export type ProductsType = {
   cancelDelete: () => void;
   searchValue: string;
   deleteItemTitle: string;
+  filtered: TypArr[];
 };
 
 const Main: React.FC<ProductsType> = ({
@@ -43,6 +44,7 @@ const Main: React.FC<ProductsType> = ({
         handleSort={handleSort}
         searchPruducts={searchPruducts}
         searchValue={searchValue}
+        products={products}
       />
       <div className={s.container}>
         <div className={s.main__card}>
@@ -51,8 +53,8 @@ const Main: React.FC<ProductsType> = ({
           ) : (
             products.map((product) => (
               <ProductBlock
-                key={product.id}
                 product={product}
+                key={product.id}
                 handleDelete={handleDelete}
                 desc={desc}
                 edit={edit}
@@ -65,7 +67,7 @@ const Main: React.FC<ProductsType> = ({
           )}
         </div>
       </div>
-      <SaveBlock />
+      {/* <SaveBlock /> */}
     </>
   );
 };

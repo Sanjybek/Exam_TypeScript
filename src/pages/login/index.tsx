@@ -1,10 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Authorization, Registration } from '../../components/login';
-// import { useDispatch, useSelector } from "react-redux"
 import { loginAction, registerAction } from '../../store/login/actions';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hook';
-import { type } from 'os';
 type Login = {
   password: string;
   username: string;
@@ -13,7 +11,21 @@ const LoginPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { isLoad, error } = useAppSelector((state) => state.loginReducer);
+
   const [isRegister, setIsRegister] = useState(false);
+
+  useEffect(() => {
+    const isRegistering = localStorage.getItem('isRegistering');
+    if (isRegistering === 'true') {
+      setIsRegister(true);
+    } else {
+      setIsRegister(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('isRegistering', String(isRegister));
+  }, [isRegister]);
 
   const onSubmit = (data: Login) => {
     if (isRegister) {
@@ -28,6 +40,7 @@ const LoginPage = () => {
       dispatch(loginAction({ navigate, ...data }));
     }
   };
+
   return isRegister ? (
     <Registration onSubmit={onSubmit} setIsRegister={setIsRegister} isLoad={isLoad} error={error} />
   ) : (

@@ -1,9 +1,9 @@
 import MainContainer from '../../container/mainContainer';
+import Authorization from '../authorization';
 
 const MainPage = () => {
-    return (
-        <MainContainer/>
-    );
+  const token = localStorage.getItem('token');
+  return <>{!token ? <Authorization /> : <MainContainer />} </>;
 };
 
 export default MainPage;
